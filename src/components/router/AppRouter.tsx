@@ -60,6 +60,9 @@ const LeafletMaps = React.lazy(() => import('@app/pages/maps/LeafletMapsPage/Lea
 const ReactSimpleMaps = React.lazy(() => import('@app/pages/maps/ReactSimpleMapsPage/ReactSimpleMapsPage'));
 const PigeonsMaps = React.lazy(() => import('@app/pages/maps/PigeonsMapsPage/PigeonsMapsPage'));
 const Logout = React.lazy(() => import('./Logout'));
+import Advertisement from '../advertisement/Advertisement';
+import Comments from '../comments/Comments';
+import AdminpRofile from '@app/adminProfile/AdminpRofile';
 
 export const NFT_DASHBOARD_PATH = '/';
 export const MEDICAL_DASHBOARD_PATH = '/medical-dashboard';
@@ -69,7 +72,9 @@ const NftDashboard = withLoading(NftDashboardPage);
 const NewsFeed = withLoading(NewsFeedPage);
 const Kanban = withLoading(KanbanPage);
 const AdvancedForm = withLoading(AdvancedFormsPage);
-
+const Add = withLoading(Advertisement);
+const Comment = withLoading(Comments);
+const Profile = withLoading(AdminpRofile);
 // UI Components
 const Buttons = withLoading(ButtonsPage);
 const Spinners = withLoading(SpinnersPage);
@@ -132,16 +137,23 @@ export const AppRouter: React.FC = () => {
       <Routes>
         <Route path={NFT_DASHBOARD_PATH} element={protectedLayout}>
           <Route index element={<NftDashboard />} />
-          <Route path={MEDICAL_DASHBOARD_PATH} element={<MedicalDashboard />} />
-          <Route path="apps">
+          <Route path="category" element={<DataTables />} />
+          <Route path="product" element={<DataTables />} />
+          <Route path="order" element={<DataTables />} />
+          <Route path="advertisement" element={<Add />} />
+          <Route path="comments" element={<Comment />} />
+          <Route path="admin-profile" element={<Profile />} />
+
+          {/* <Route path={MEDICAL_DASHBOARD_PATH} element={<MedicalDashboard />} /> */}
+          {/* <Route path="apps">
             <Route path="feed" element={<NewsFeed />} />
             <Route path="kanban" element={<Kanban />} />
-          </Route>
-          <Route path="forms">
+          </Route> */}
+          {/* <Route path="forms">
             <Route path="advanced-forms" element={<AdvancedForm />} />
-          </Route>
-          <Route path="data-tables" element={<DataTables />} />
-          <Route path="charts" element={<Charts />} />
+          </Route> */}
+          {/* <Route path="data-tables" element={<DataTables />} /> */}
+          {/* <Route path="charts" element={<Charts />} />
           <Route path="maps">
             <Route path="google-maps" element={<Google />} />
             <Route path="leaflet-maps" element={<Leaflet />} />
@@ -155,8 +167,8 @@ export const AppRouter: React.FC = () => {
             <Route path="security-settings" element={<SecuritySettings />} />
             <Route path="notifications" element={<Notifications />} />
             <Route path="payments" element={<Payments />} />
-          </Route>
-          <Route path="ui-components">
+          </Route> */}
+          {/* <Route path="ui-components">
             <Route path="button" element={<Buttons />} />
             <Route path="spinner" element={<Spinners />} />
             <Route path="input" element={<Inputs />} />
@@ -184,7 +196,7 @@ export const AppRouter: React.FC = () => {
             <Route path="alert" element={<Alerts />} />
             <Route path="notification" element={<NotificationsUI />} />
             <Route path="skeleton" element={<Skeletons />} />
-          </Route>
+          </Route> */}
         </Route>
         <Route path="/auth" element={<AuthLayoutFallback />}>
           <Route path="login" element={<LoginPage />} />

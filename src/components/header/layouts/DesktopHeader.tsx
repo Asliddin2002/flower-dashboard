@@ -18,9 +18,9 @@ export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ isTwoColumnsLayout
         <Col xl={15} xxl={12}>
           <HeaderSearch />
         </Col>
-        <Col>
+        {/* <Col>
           <S.GHButton />
-        </Col>
+        </Col> */}
       </Row>
     </S.SearchColumn>
   ) : (
@@ -28,9 +28,9 @@ export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ isTwoColumnsLayout
       <Col lg={10} xxl={8}>
         <HeaderSearch />
       </Col>
-      <Col>
+      {/* <Col>
         <S.GHButton />
-      </Col>
+      </Col> */}
     </>
   );
 
