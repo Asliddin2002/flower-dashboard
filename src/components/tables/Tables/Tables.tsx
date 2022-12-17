@@ -11,8 +11,11 @@ export const Tables: React.FC = () => {
   const location = useLocation();
   console.log(location.pathname);
   const titles = { title: '' };
-  if (location.pathname === '/category') {
-    titles.title = 'Categories';
+  if (location.pathname === '/category/parent') {
+    titles.title = 'Parent Categories';
+  }
+  if (location.pathname === '/category/sub') {
+    titles.title = 'Sub Categories';
   }
   if (location.pathname == '/product') {
     titles.title = 'Products';
@@ -24,15 +27,15 @@ export const Tables: React.FC = () => {
   return (
     <>
       <S.TablesWrapper>
-        {/* <S.Card id="basic-table" title={t('tables.basicTable')} padding="1.25rem 1.25rem 0">
+        <S.Card id="basic-table" title={titles.title} padding="1.25rem 1.25rem 0">
           <BasicTable />
         </S.Card>
-        <S.Card id="tree-table" title={t('tables.treeTable')} padding="1.25rem 1.25rem 0">
+        {/* <S.Card id="tree-table" title={t('tables.treeTable')} padding="1.25rem 1.25rem 0">
           <TreeTable />
         </S.Card> */}
-        <S.Card id="editable-table" title={titles.title} padding="1.25rem 1.25rem 0">
+        {/* <S.Card id="editable-table" title={titles.title} padding="1.25rem 1.25rem 0">
           <EditableTable />
-        </S.Card>
+        </S.Card> */}
       </S.TablesWrapper>
     </>
   );

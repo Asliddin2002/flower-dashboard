@@ -63,10 +63,16 @@ const Logout = React.lazy(() => import('./Logout'));
 import Advertisement from '../advertisement/Advertisement';
 import Comments from '../comments/Comments';
 import AdminpRofile from '@app/adminProfile/AdminpRofile';
+import ProductList from '../product/ProductList';
+import SubCategoryList from '../category/sub/SubCategoryList';
+import ParentCategoryList from '../category/parent/ParentCategoryList';
 
 export const NFT_DASHBOARD_PATH = '/';
 export const MEDICAL_DASHBOARD_PATH = '/medical-dashboard';
 
+const Products = withLoading(ProductList);
+const ParentCategories = withLoading(ParentCategoryList);
+const SubCategories = withLoading(SubCategoryList);
 const MedicalDashboard = withLoading(MedicalDashboardPage);
 const NftDashboard = withLoading(NftDashboardPage);
 const NewsFeed = withLoading(NewsFeedPage);
@@ -137,13 +143,17 @@ export const AppRouter: React.FC = () => {
       <Routes>
         <Route path={NFT_DASHBOARD_PATH} element={protectedLayout}>
           <Route index element={<NftDashboard />} />
-          <Route path="category" element={<DataTables />} />
-          <Route path="product" element={<DataTables />} />
+          <Route path="category">
+            <Route path="parent" element={<ParentCategories />} />
+            <Route path="sub" element={<SubCategories />} />
+          </Route>
+          <Route path="product" element={<Products />} />
           <Route path="order" element={<DataTables />} />
           <Route path="advertisement" element={<Add />} />
           <Route path="comments" element={<Comment />} />
           <Route path="admin-profile" element={<Profile />} />
-
+          <Route path="404" element={<Error404 />} />
+          <Route path="server-error" element={<ServerError />} />
           {/* <Route path={MEDICAL_DASHBOARD_PATH} element={<MedicalDashboard />} /> */}
           {/* <Route path="apps">
             <Route path="feed" element={<NewsFeed />} />
@@ -160,8 +170,8 @@ export const AppRouter: React.FC = () => {
             <Route path="react-simple-maps" element={<ReactSimple />} />
             <Route path="pigeon-maps" element={<Pigeons />} />
           </Route>
-          <Route path="server-error" element={<ServerError />} />
-          <Route path="404" element={<Error404 />} />
+          
+          
           <Route path="profile" element={<ProfileLayout />}>
             <Route path="personal-info" element={<PersonalInfo />} />
             <Route path="security-settings" element={<SecuritySettings />} />

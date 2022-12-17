@@ -4,11 +4,13 @@ import { BasicTableRow, getBasicTableData, Pagination, Tag } from 'api/table.api
 import { Table } from 'components/common/Table/Table';
 import { ColumnsType } from 'antd/es/table';
 import { Button } from 'components/common/buttons/Button/Button';
+import { Modal, InfoModal, SuccessModal, WarningModal, ErrorModal } from '@app/components/common/Modal/Modal';
 import { useTranslation } from 'react-i18next';
 import { defineColorByPriority } from '@app/utils/utils';
 import { notificationController } from 'controllers/notificationController';
 import { Status } from '@app/components/profile/profileCard/profileFormNav/nav/payments/paymentHistory/Status/Status';
 import { useMounted } from '@app/hooks/useMounted';
+import ProductCreate from '@app/components/product/productCreate/ProductCreate';
 
 const initialPagination: Pagination = {
   current: 1,
@@ -23,6 +25,7 @@ export const BasicTable: React.FC = () => {
   });
   const { t } = useTranslation();
   const { isMounted } = useMounted();
+  const [isLargeModalVisible, setIsLargeModalVisible] = useState<boolean>(false);
 
   const fetch = useCallback(
     (pagination: Pagination) => {
@@ -139,17 +142,30 @@ export const BasicTable: React.FC = () => {
       render: (text: string, record: { name: string; key: number }) => {
         return (
           <Space>
+            <ProductCreate
+              title="Edit product"
+              isLargeModalVisible={isLargeModalVisible}
+              setIsLargeModalVisible={setIsLargeModalVisible}
+            />
             <Button
               type="ghost"
-              onClick={() => {
-                notificationController.info({ message: t('tables.inviteMessage', { name: record.name }) });
-              }}
+              // onClick={() => {
+              //   // notificationController.info({ message: t('tables.inviteMessage', { name: record.name }) });
+
+              // }}
+              onClick={() => setIsLargeModalVisible(true)}
             >
-              {t('tables.invite')}
+              edit{' '}
             </Button>
             <Button type="default" danger onClick={() => handleDeleteRow(record.key)}>
               {t('tables.delete')}
             </Button>
+            <Button type="default">Details</Button>
+            <ProductCreate
+              title="Edit product"
+              isLargeModalVisible={isLargeModalVisible}
+              setIsLargeModalVisible={setIsLargeModalVisible}
+            />
           </Space>
         );
       },

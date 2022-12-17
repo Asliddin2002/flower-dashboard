@@ -31,8 +31,19 @@ export const sidebarNavigation: SidebarNavigationItem[] = [
   {
     title: 'Category',
     key: 'category',
-    url: '/category',
     icon: <DashboardOutlined />,
+    children: [
+      {
+        title: 'Parent',
+        key: 'parent',
+        url: '/category/parent',
+      },
+      {
+        title: 'Sub',
+        key: 'sub',
+        url: '/category/sub',
+      },
+    ],
   },
   {
     title: 'Product',
